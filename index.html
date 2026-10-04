@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Soumia ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:Arial,sans-serif;
+  background:#080108;
+}
+
+body{
+  color:white;
+}
+
+/* =========================
+   الشاشة الرئيسية
+========================= */
+
+#startScreen{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at center,#4b1028 0%,#180611 45%,#050105 100%);
+}
+
+.startContent{
+  text-align:center;
+  z-index:5;
+}
+
+.startTitle{
+  font-size:clamp(28px,7vw,65px);
+  margin-bottom:35px;
+  text-shadow:0 0 15px #ff477e,0 0 35px #8b123f;
+}
+
+.startButton{
+  border:2px solid #ff6b91;
+  background:linear-gradient(135deg,#5d102d,#a51f4e);
+  color:white;
+  padding:18px 45px;
+  border-radius:50px;
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:
+    0 0 15px #ff416c,
+    0 0 40px #6e1239;
+  animation:pulse 1.7s infinite;
+}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.07);
+    box-shadow:0 0 30px #ff416c,0 0 70px #8b123f;
+  }
+}
+
+/* =========================
+   النجوم
+========================= */
+
+.star{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 0 8px white;
+  animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:.25;transform:scale(.7)}
+  to{opacity:1;transform:scale(1.5)}
+}
+
+/* =========================
+   العناصر العامة
+========================= */
+
+.scene{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at center,#3b0b20 0%,#10030b 48%,#030103 100%);
+}
+
+.scene.active{
+  display:flex;
+}
+
+.sceneContent{
+  position:relative;
+  z-index:10;
+  text-align:center;
+}
+
+.title{
+  font-size:clamp(35px,9vw,90px);
+  text-shadow:
+    0 0 10px #ff477e,
+    0 0 25px #ff477e,
+    0 0 55px #9d174d;
+}
+
+.subtitle{
+  margin-top:25px;
+  font-size:clamp(20px,5vw,42px);
+  line-height:1.6;
+  text-shadow:0 0 15px #ff477e;
+}
+
+/* =========================
+   الورود والقلوب
+========================= */
+
+.rose{
+  position:absolute;
+  font-size:clamp(25px,5vw,55px);
+  animation:floatRose 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 10px #ff174f);
+}
+
+@keyframes floatRose{
+  0%,100%{transform:translateY(0) rotate(-5deg)}
+  50%{transform:translateY(-25px) rotate(8deg)}
+}
+
+.floatingHeart{
+  position:absolute;
+  font-size:clamp(18px,4vw,45px);
+  animation:heartFloat 5s linear infinite;
+  filter:drop-shadow(0 0 10px #ff174f);
+}
+
+@keyframes heartFloat{
+  from{
+    transform:translateY(110vh) scale(.5);
+    opacity:0;
+  }
+  20%{opacity:1}
+  100%{
+    transform:translateY(-20vh) scale(1.2) rotate(20deg);
+    opacity:0;
+  }
+}
+
+/* =========================
+   القمر
+========================= */
+
+.moon{
+  position:absolute;
+  top:8%;
+  left:8%;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#fff5d7;
+  box-shadow:0 0 20px #fff5d7,0 0 60px #fff;
+}
+
+.moon:after{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#12040c;
+  left:28px;
+  top:-10px;
+}
+
+/* =========================
+   MATRIX
+========================= */
+
+#matrixCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:#000;
+}
+
+.matrixNumber{
+  position:absolute;
+  z-index:5;
+  font-size:clamp(100px,30vw,300px);
+  font-weight:bold;
+  color:white;
+  text-shadow:
+    0 0 10px #fff,
+    0 0 30px #ff174f,
+    0 0 70px #8b123f;
+}
+
+/* =========================
+   قلب كبير
+========================= */
+
+.bigHeart{
+  position:relative;
+  width:260px;
+  height:230px;
+  transform:rotate(-45deg);
+  background:#9d123f;
+  box-shadow:
+    0 0 25px #ff174f,
+    0 0 70px #9d123f;
+  animation:heartBeat 1.4s infinite;
+}
+
+.bigHeart:before,
+.bigHeart:after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:230px;
+  background:#9d123f;
+  border-radius:50%;
+}
+
+.bigHeart:before{
+  top:-115px;
+  left:0;
+}
+
+.bigHeart:after{
+  left:115px;
+  top:0;
+}
+
+@keyframes heartBeat{
+  50%{transform:rotate(-45deg) scale(1.08)}
+}
+
+/* النص فوق القلب */
+.heartText{
+  position:absolute;
+  z-index:20;
+  font-size:clamp(30px,8vw,75px);
+  font-weight:bold;
+  text-shadow:0 0 15px white,0 0 30px #ff174f;
+}
+
+/* =========================
+   قلب الكلمات
+========================= */
+
+.wordHeart{
+  position:relative;
+  width:min(90vw,650px);
+  height:min(75vh,600px);
+}
+
+.loveWord{
+  position:absolute;
+  color:#ffb3c6;
+  font-size:clamp(11px,2vw,18px);
+  font-weight:bold;
+  text-shadow:0 0 8px #ff174f;
+  white-space:nowrap;
+}
+
+/* =========================
+   انفجار الألعاب النارية
+========================= */
+
+.firework{
+  position:absolute;
+  bottom:-30px;
+  left:50%;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:
+    0 0 10px #fff,
+    0 0 30px #ff174f,
+    0 0 60px #ff174f;
+  animation:firework 2s ease-out infinite;
+}
+
+@keyframes firework{
+  0%{
+    transform:translate(-50%,0) scale(.3);
+    opacity:1;
+  }
+  100%{
+    transform:translate(-50%,-65vh) scale(2);
+    opacity:0;
+  }
+}
+
+/* =========================
+   إخفاء البداية
+========================= */
+
+.fadeOut{
+  animation:fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut{
+  to{
+    opacity:0;
+    visibility:hidden;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     الموسيقى
+========================= -->
+
+<audio id="birthdayMusic" loop>
+  <source src="happy-birthday.mp3" type="audio/mpeg">
+</audio>
+
+<!-- =========================
+     المشهد 1
+========================= -->
+
+<div id="startScreen">
+
+  <div class="moon"></div>
+
+  <div class="startContent">
+    <div class="startTitle">
+      🎂 ❤️ عيد ميلاد سمية ❤️ 🎂
+    </div>
+
+    <button class="startButton" onclick="startBirthday()">
+      اضغطي هنا ❤️
+    </button>
+  </div>
+
+</div>
+
+<!-- =========================
+     MATRIX
+========================= -->
+
+<canvas id="matrixCanvas"></canvas>
+
+<div id="matrixScene" class="scene">
+  <div id="matrixNumber" class="matrixNumber">3</div>
+</div>
+
+<!-- =========================
+     المشهد 5
+========================= -->
+
+<div id="scene5" class="scene">
+
+  <div class="moon"></div>
+
+  <div class="sceneContent">
+
+    <div class="bigHeart"></div>
+
+    <div class="heartText">
+      Soumia ❤️
+    </div>
+
+  </div>
+
+  <div class="firework"></div>
+  <div class="firework" style="left:25%;animation-delay:.5s"></div>
+  <div class="firework" style="left:75%;animation-delay:1s"></div>
+
+</div>
+
+<!-- =========================
+     المشهد 6
+========================= -->
+
+<div id="scene6" class="scene">
+
+  <div class="wordHeart" id="wordHeart"></div>
+
+</div>
+
+<!-- =========================
+     المشهد 7
+========================= -->
+
+<div id="scene7" class="scene">
+
+  <div class="moon"></div>
+
+  <div class="sceneContent">
+
+    <div class="title">
+      Happy Birthday, Soumia ❤️
+    </div>
+
+    <div class="subtitle">
+      أتمنى أن تظل ابتسامتكِ دائمًا<br>
+      أكثر إشراقًا من النجوم ✨❤️
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     المشهد 8
+========================= -->
+
+<div id="scene8" class="scene">
+
+  <div class="sceneContent">
+
+    <div class="title">
+      I LOVE YOU ❤️
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     المشهد 9
+========================= -->
+
+<div id="scene9" class="scene">
+
+  <div class="sceneContent">
+
+    <div class="title">
+      إلى سمية ❤️
+    </div>
+
+    <div class="subtitle">
+      آسف لأنني لم أقدم هدية مادية<br>
+      بسبب البعد 😍
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     المشهد 10
+========================= -->
+
+<div id="scene10" class="scene">
+
+  <div class="sceneContent">
+
+    <div class="title">
+      أنتِ مميزة ❤️
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     المشهد 11
+========================= -->
+
+<div id="scene11" class="scene">
+
+  <div class="moon"></div>
+
+  <div class="sceneContent">
+
+    <div class="title">
+      Happy Birthday, Soumia ❤️
+    </div>
+
+    <div class="subtitle">
+      15 October 2010 🎂
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* ==================================
+   إنشاء النجوم والقلوب والورود
+================================== */
+
+function createDecorations(scene){
+
+  for(let i=0;i<45;i++){
+
+    const star=document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=Math.random()*100
